@@ -1,50 +1,128 @@
 ---
 interface Props {
 	title: string;
+	description:string
 }
 
-const { title } = Astro.props;
+import '@fontsource-variable/onest';
+import Header from '../components/Header.astro'; 
+import Footer from '../components/Footer.astro';
+
+
+
+const {description, title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body >
+		<div class="relative h-full w-full bg-slate-950"><div class="absolute bottom-0 left-[-20%] right-0 top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div><div class="absolute bottom-0 right-[-20%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div></div>
+		<Header />
 		<slot />
 	</body>
 </html>
+
 <style is:global>
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		color-scheme:light dark;
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
+		font-family: 'Onest Variable', system-ui, sans-serif;
+		scroll-behavior: smooth;
+		margin:0;
+		min-height: 100vh;
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+
+	body {
+		display:flex;
+		flex-direction: column;
+		min-height: 100vh;
+		overflow-x:hidden;
+		
 	}
+
+	@media (prefers-reduced-motion: reduce){
+		html{
+			scroll-behavior:auto;
+		}
+	}
+
+.card {
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(18, 18, 18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 25px;
+  gap: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
+}
+
+/* for all social containers*/
+.socialContainer {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: .3s;
+}
+/* instagram*/
+.containerOne:hover {
+  background-color: #d62976;
+  transition-duration: .3s;
+}
+
+/* linkdin*/
+.containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: .3s;
+}
+/* Whatsapp*/
+.containerFour:hover {
+  background-color: #128C7E;
+  transition-duration: .3s;
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: .3s;
+}
+
+.socialSvg {
+  width: 22px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+	
 </style>

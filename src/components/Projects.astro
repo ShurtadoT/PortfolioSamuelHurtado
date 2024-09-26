@@ -1,0 +1,112 @@
+---
+import HtmlIcon from "./icons/Html.astro";
+import CssIcon from "./icons/Css.astro";
+import JavaScriptIcon from "./icons/JavaScript.astro";
+import NodeJSIcon from "./icons/NodeJS.astro";
+import UnityIcon from "./icons/Unity.astro";
+import ReactIcon from "./icons/React.astro";
+import GitHubIcon from "./icons/GitHub.astro";
+
+const TAGS = {
+  HTML: {
+    name: "HTML",
+    class: "bg-black text-white",
+    icon: HtmlIcon,
+  },
+
+  CSS: {
+    name: "CSS",
+    class: "bg-black text-white",
+    icon: CssIcon,
+  },
+
+  JavaScript: {
+    name: "JavaScript",
+    class: "bg-black text-white",
+    icon: JavaScriptIcon,
+  },
+
+  NodeJS: {
+    name: "Node.js",
+    class: "bg-black text-white",
+    icon: NodeJSIcon,
+  },
+
+  Unity: {
+    name: "UnityHub",
+    class: "bg-black text-white",
+    icon: UnityIcon,
+  },
+
+  React: {
+    name: "React",
+    class: "bg-black text-white",
+    icon: ReactIcon,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "ShipShop",
+    description:
+      "Página web de venta e información de cohetes de la NASA y SpaceX en donde se desarrolla una Api con productos JSON para la carga de datos dinamica utilizando JavaScript, HTMl, CSS y Node.js",
+    github: "https://github.com/ShurtadoT/ShipShop",
+    image: "/projects/shipshop.png",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.JavaScript, TAGS.NodeJS],
+  },
+
+  {
+    title: "Hellbound Legion",
+    description:
+      "Juego 2D MMO RPG basado en la epoca medieval. Cuenta con escenarios, enemigos, jefes y diferentes tipos de habilidades. Desarrollado con la herramienta gráfica Unity",
+    github: "https://github.com/ShurtadoT/Juego_2D",
+    image: "/projects/hellbounlegion.png",
+    tags: [TAGS.Unity],
+  },
+
+  {
+    title: "APOTD",
+    description:
+      "Astronomy Picture of the Day es una API pública de la NASA, la cual adquirir datos como imagenes, descripciones y fechas para ver no solo la foto del día sino también el registro de fechas anteriores hasta junio del año 1995",
+    github: "https://github.com/ShurtadoT/astronomy-picture",
+    image: "/projects/APOTD.png",
+    tags: [TAGS.React, TAGS.CSS],
+  },
+];
+---
+
+{PROJECTS.map(({ title, description, tags, image, github }) => (
+  <article>
+    <h3 class="text-2xl font.semibold text text-purple-200 mb-2">{title}</h3>
+    <p class="text-lg mb-4 text-pretty">{description}</p>
+    <ul class="flex gap-x-4 flex-row">
+      {tags.map((tag) => (
+        <li>
+          <span class={`flex fap-x-2 rounded-full text-xl ${tag.class} py-1 px-2`}>
+            <tag.icon class="size-6" />
+            {tag.name}
+          </span>
+        </li>
+      ))}
+    </ul>
+    <div class="relative group w-[500px] h-[350px] rounded-lg overflow-hidden shadow-2xl mb-20">
+  <img
+    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+    src={image}
+    alt={`Captura de pantalla del proyecto ${title}`}
+  />
+  <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"></div>
+
+  <!-- Enlace que contiene el icono de GitHub -->
+  <a href={github} target="_blank" rel="noopener noreferrer" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 scale-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100 z-10">
+    <GitHubIcon class="w-12 h-12 text-white" />
+  </a>
+  <div class="absolute inset-0 flex items-center justify-center">
+   
+  </div>
+</div>
+
+  </article>
+))}
+
+

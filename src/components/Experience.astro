@@ -1,0 +1,42 @@
+---
+const EXPERIENCE = [
+  {
+    title: "Consumo de APIs",
+    description:
+      "Desarrollo de páginas Front-End consumiendo APIS públicas utilizando JavaScript y React",
+  },
+  {
+    title: "Desarrollo de videojuegos",
+    description:
+      "Desarrollo de GUI, programación de personajes, programación y diseño visual del entorno y programación para guardado de datos por medio de paquetes JSON utilizando la herramienta gráfica 'Unity' junto al lenguaje C# ",
+  },
+  {
+    title: "Desarrollo de páginas web",
+    description:
+      "Conocimientos sobre desarrollo front-end y back-end utilizando tecnologías como HTML, CSS, JavaScript, Node.js y Express.js",
+  },
+
+  {
+    title: "Uso de bases de datos SQL y NoSQL",
+    description:
+      "Conocimientos acerca de consultas, subconsultas, triggers y vistas en el desarrollo de bases de datos utilizando tecnologías como MySQL y MongoDB",
+  },
+
+  {
+    title: "Programación orientada a objetos",
+    description:
+      "Desarrollo de interfaces gráficas y formularios usando Java y C#",
+  },
+];
+import ExperienceItem from "./ExperienceItem.astro";
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
