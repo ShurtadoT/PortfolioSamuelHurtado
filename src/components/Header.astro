@@ -1,10 +1,57 @@
-<header class="flex justify-center items-center py-5 wfull xl:w-[1120px] mx-auto sticky top-0 z-50 bg-black/300 backdrop-blur-lg  ">
-    <nav class="flex flex-row gap-x-10 opacity-80">
+<header class="flex justify-center items-center py-5 w-full xl:w-[1120px] mx-auto sticky top-0 z-50 bg-black/300 backdrop-blur-lg px-4">
+    <!-- Botón de hamburguesa (visible solo en móvil) -->
+    <button id="menu-toggle" class="text-gray-200 md:hidden focus:outline-none absolute right-4">
+        <!-- Ícono de hamburguesa -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+    </button>
+
+    <!-- Menú de navegación para pantallas medianas y grandes -->
+    <nav class="hidden md:flex flex-row gap-x-10 opacity-80">
         <a href="#top" class="text-gray-200 hover:text-purple-400 transition-colors duration-300">Inicio</a>
         <a href="#experiencia" class="text-gray-200 hover:text-purple-400 transition-colors duration-300">Conocimientos</a>
         <a href="#proyectos" class="text-gray-200 hover:text-purple-400 transition-colors duration-300">Proyectos</a>
-        <a href="#sobre-mi" class="text-gray-200 hover:text-purple-400 transition-colors duration-300">Sobre mi</a>
+        <a href="#sobre-mi" class="text-gray-200 hover:text-purple-400 transition-colors duration-300">Sobre mí</a>
         <a href="#habilidades" class="text-gray-200 hover:text-purple-400 transition-colors duration-300">Habilidades</a>
         <a href="#contact" class="text-gray-200 hover:text-purple-400 transition-colors duration-300">Contacto</a>
     </nav>
+
+    <!-- Menú desplegable para móviles -->
+    <nav id="mobile-menu" class="hidden absolute top-16 right-4 w-3/4 max-w-xs bg-black/500 backdrop-blur-lg py-6 px-4 rounded-lg shadow-lg md:hidden flex-col items-center gap-y-4 transition-all duration-300 ease-in-out">
+        <a href="#top" class="block text-gray-200 hover:text-purple-400 transition-colors duration-300">Inicio</a>
+        <a href="#experiencia" class="block text-gray-200 hover:text-purple-400 transition-colors duration-300">Conocimientos</a>
+        <a href="#proyectos" class="block text-gray-200 hover:text-purple-400 transition-colors duration-300">Proyectos</a>
+        <a href="#sobre-mi" class="block text-gray-200 hover:text-purple-400 transition-colors duration-300">Sobre mí</a>
+        <a href="#habilidades" class="block text-gray-200 hover:text-purple-400 transition-colors duration-300">Habilidades</a>
+        <a href="#contact" class="block text-gray-200 hover:text-purple-400 transition-colors duration-300">Contacto</a>
+    </nav>
 </header>
+
+<!-- Script para manejar el menú de hamburguesa y cerrar al hacer clic fuera -->
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Función para alternar la visibilidad del menú
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Abrir o cerrar el menú al hacer clic en el botón de hamburguesa
+        menuToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Evita que el clic en el botón cierre el menú
+            toggleMenu();
+        });
+
+        // Cerrar el menú al hacer clic fuera de él
+        document.addEventListener('click', (event) => {
+            const isClickInsideMenu = mobileMenu.contains(event.target) || menuToggle.contains(event.target);
+            
+            if (!isClickInsideMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    });
+</script>
